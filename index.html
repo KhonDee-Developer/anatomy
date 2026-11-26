@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="th" data-theme="dark">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-<title>My Hardware Anatomy — Interactive 3D Teardown Visualizer</title>
+<title>Chess Anatomy — Interactive 3D Teardown Visualizer</title>
 
 <script>
   (function () {
     try {
-      var saved = localStorage.getItem('hw-anatomy-theme');
+      var saved = localStorage.getItem('chess-anatomy-theme');
       var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
       var theme = saved || (prefersLight ? 'light' : 'dark');
       document.documentElement.setAttribute('data-theme', theme);
@@ -21,7 +18,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -34,15 +31,15 @@
         <rect class="logo-front" x="9" y="9" width="14" height="14" rx="1.5" stroke-width="1.4"/>
       </svg>
       <div>
-        <div class="name">Hardware Anatomy</div>
-        <div class="tagline">interactive 3d teardown visualizer</div>
+        <div class="name">Chess Anatomy</div>
+        <div class="tagline">อนาโตมี่หมากรุกสากล 3 มิติ</div>
       </div>
     </div>
 
     <div id="device-tabs"></div>
 
     <div id="header-actions">
-      <button id="btn-theme" type="button" title="Switch to light mode" aria-label="Toggle light/dark theme">
+      <button id="btn-theme" type="button" title="สลับโหมดสว่าง/มืด" aria-label="Toggle light/dark theme">
         <svg class="icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <circle cx="12" cy="12" r="4"/>
           <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
@@ -51,17 +48,17 @@
           <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
         </svg>
       </button>
-      <button id="btn-reset">Reset view</button>
+      <button id="btn-reset">รีเซ็ตมุมมอง</button>
     </div>
   </header>
 
   <nav id="left-panel">
     <div class="panel-section" style="flex:0 0 auto;">
-      <div class="panel-title">Layer stack</div>
+      <div class="panel-title">โครงสร้างส่วนประกอบ</div>
     </div>
     <ul id="layer-list"></ul>
     <div class="panel-section" id="spec-sheet-wrap">
-      <div class="panel-title">Spec sheet</div>
+      <div class="panel-title">ข้อมูลจำเพาะ (FIDE Spec)</div>
       <div id="spec-sheet"></div>
     </div>
   </nav>
@@ -79,16 +76,16 @@
 
     <div class="vp-overlay" id="vp-topleft">
       <div class="device-name" id="vp-device-name">—</div>
-      <div id="vp-device-sub">exploded-view inspector</div>
+      <div id="vp-device-sub">มุมมองแยกชิ้นส่วน 3 มิติ</div>
     </div>
 
     <div class="vp-overlay" id="vp-topright">
       <div id="mode-toggles">
-        <button id="btn-sim" type="button" title="Toggle mechanical simulation">
+        <button id="btn-sim" type="button" title="จำลองการทำงาน">
           <span class="sim-dot"></span>Simulate
         </button>
-        <button id="btn-xray" type="button" title="Toggle X-Ray wireframe view">X-Ray</button>
-        <button id="btn-isolate" type="button" title="Isolate selected component" disabled>Isolate</button>
+        <button id="btn-xray" type="button" title="โหมดเอ็กซเรย์">X-Ray</button>
+        <button id="btn-isolate" type="button" title="แสดงเฉพาะชิ้นส่วนที่เลือก" disabled>Isolate</button>
       </div>
       <div id="view-presets">
         <button data-view="iso">Iso</button>
@@ -98,7 +95,7 @@
     </div>
 
     <div class="vp-overlay" id="decon-wrap">
-      <label for="decon-slider">Deconstruct</label>
+      <label for="decon-slider">แยกชิ้นส่วน</label>
       <input type="range" id="decon-slider" min="0" max="100" value="0" step="1" />
       <span id="decon-value">0%</span>
       <div class="decon-chips">
@@ -124,8 +121,8 @@
 <script type="importmap">
 {
   "imports": {
-    "three": "https://unpkg.com/three@0.157.0/build/three.module.js",
-    "three/addons/": "https://unpkg.com/three@0.157.0/examples/jsm/"
+    "three": "https://esm.sh/three@0.157.0",
+    "three/addons/": "https://esm.sh/three@0.157.0/examples/jsm/"
   }
 }
 </script>
